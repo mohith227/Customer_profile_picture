@@ -1,0 +1,18 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Form\Edit $block */
+?>
+<div class="field field-name-avatar">
+    <?php $avatarFile = !empty($block->getCustomer()->getCustomAttribute('profile_picture')) ? $block->getLayout()->createBlock('\Codilar\CustomerProfilePicture\Block\Attributes\Avatar')->checkImageFile(base64_encode($block->getCustomer()->getCustomAttribute('profile_picture')->getValue())) : false; ?>
+    <?php $avatar = ($avatarFile) ? $block->getUrl('viewfile/avatar/view/', ['image' => base64_encode($block->getCustomer()->getCustomAttribute('profile_picture')->getValue())]) : $block->getViewFileUrl('Codilar_CustomerProfilePicture::images/no-profile-photo.jpg');?>
+    <label class="label" for="profile_picture">
+        <span class="avatar-title"></span>
+        <img src="<?php echo $avatar; ?>" width="150px" height="150px" alt="profile-picture"  class="profile-image"/>
+    </label>
+</div>
